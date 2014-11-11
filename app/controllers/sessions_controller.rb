@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user=User.find_by_email(params[:session][:email])
+    user=User.find_by_email(params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       # Welcome to site
       sign_in user
@@ -11,4 +11,10 @@ class SessionsController < ApplicationController
       render 'new'
     end
   end
+  
+  def destroy
+    sign_out
+    redirect_to root_url
+  end
+  
 end

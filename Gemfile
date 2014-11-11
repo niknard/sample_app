@@ -4,11 +4,10 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-gem 'sprockets-rails'
+# gem 'sprockets-rails'
 
+gem 'bootstrap-sass', '2.3.2.0'
 gem 'sass-rails', '>= 3.2'
-gem 'bootstrap-sass', '~> 3.3.0'
-#, '2.3.2.0'
 gem 'autoprefixer-rails'
 
 gem 'bcrypt-ruby', '3.1.2'
@@ -46,6 +45,8 @@ group :test do
   gem 'selenium-webdriver', '2.35.1'
   gem 'capybara', '2.1.0'
   gem 'factory_girl_rails', '4.2.1'
+  gem 'cucumber-rails', '1.4.0', :require => false
+  gem 'database_cleaner', github: 'bmabey/database_cleaner'
 end
 group :production do
   gem 'pg', '0.15.1'

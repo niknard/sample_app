@@ -24,11 +24,12 @@ describe "User pages" do
     end
     
     describe "with valid information" do
+
       before do
-        fill_in "Name",      with: "Example User"
-        fill_in "Email",         with: "user@example.com"
-        fill_in "Password",      with: "123456"
-        fill_in "Confirmation",  with: "123456"
+        fill_in "Name",          with: "Michael Hartl"
+        fill_in "Email",         with: "michael@example.com"
+        fill_in "Password",      with: "foobar"
+        fill_in "Confirmation",  with: "foobar"
       end
       
       it "should create user" do
@@ -37,14 +38,16 @@ describe "User pages" do
       
       describe "after saving the user" do
         before { click_button submit }
-        let(:user) { User.find_by(email: 'user@example.com') }
+        let(:user) { User.find_by(email: "michael@example.com") }
+        
+        it { should have_link("Sign out") }
         it { should have_title(user.name) }
         it { should have_selector('div.alert.alert-success', text: 'Welcome') }
       end
       
       describe "after saving the user text should have user name" do
         before { click_button submit }
-        let(:user) { User.find_by(email: 'user@example.com') }
+        let(:user) { User.find_by(email: "michael@example.com") }
         it { should have_selector('div.alert.alert-success', text: user.name)}
       end
       
