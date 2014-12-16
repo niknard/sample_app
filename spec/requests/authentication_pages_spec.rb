@@ -61,6 +61,20 @@ describe "Authentication" do
         before { delete user_path(user) }
         specify { expect(response).to redirect_to(root_url) }
       end
+      
+      describe "user can change their own admin status" do
+        let(:params) do
+          { user: { admin: true, password: non_admin.password, password_confirmation: non_admin.password } }
+        end
+
+        before do 
+          patch user_path(non_admin), params
+        end
+        
+        specify { expect(non_admin.reload).not_to be_admin }
+                
+      end
+      
     end
 
     describe "for non-signed-in users" do
