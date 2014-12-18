@@ -4,25 +4,6 @@ describe "User pages" do
 
   subject { page }
   
-  describe "destroy yourself (admin)" do
-    let(:admin) {FactoryGirl.create(:admin)}
-    
-    before do 
-      puts User.count
-      sign_in admin
-      remember_token = User.new_remember_token
-      cookies[:remember_token] = remember_token
-      admin.update_attribute(:remember_token, User.encrypt(remember_token))
-    end
-    
-    it do
-      expect do
-        delete user_path(admin)
-      end.not_to change(User, :count).by(-1)
-    end
-    
-  end  
-  
   describe "shouldn't show w/o authorization" do
     let(:user){ FactoryGirl.create(:user) }
     before { visit root_path }
